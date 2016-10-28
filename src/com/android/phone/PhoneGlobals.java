@@ -72,6 +72,8 @@ import com.android.phone.settings.SettingsConstants;
 import com.android.server.sip.SipService;
 import com.android.services.telephony.activation.SimActivationManager;
 
+import com.mediatek.phone.PhoneInterfaceManagerEx;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -213,6 +215,9 @@ public class PhoneGlobals extends ContextWrapper {
     public OtaUtils.CdmaOtaConfigData cdmaOtaConfigData;
     public OtaUtils.CdmaOtaScreenState cdmaOtaScreenState;
     public OtaUtils.CdmaOtaInCallScreenUiState cdmaOtaInCallScreenUiState;
+
+    // MTK
+    PhoneInterfaceManagerEx phoneMgrEx;
 
     /**
      * Set the restore mute state flag. Used when we are setting the mute state
@@ -379,6 +384,7 @@ public class PhoneGlobals extends ContextWrapper {
             callStateMonitor = new CallStateMonitor(mCM);
 
             phoneMgr = PhoneInterfaceManager.init(this, PhoneFactory.getDefaultPhone());
+            phoneMgrEx = PhoneInterfaceManagerEx.init(this, PhoneFactory.getDefaultPhone());  // MTK
 
             configLoader = CarrierConfigLoader.init(this);
 
